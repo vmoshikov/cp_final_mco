@@ -10,6 +10,7 @@ from . import views
 app_name = 'crm'
 
 urlpatterns = [
-    path('',  views.index, name='crm_index'),
-    
+      path('',  views.index, name='crm_index'),
+      path('vacancy/',  views.vacancy, name='crm_vacancy'),
+      path('vacancy/details/<int:vacancy_id>', views.vacancy_details, name='vacancy_details'),
 ]
