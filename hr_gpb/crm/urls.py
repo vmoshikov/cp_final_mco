@@ -11,6 +11,10 @@ app_name = 'crm'
 
 urlpatterns = [
       path('',  views.index, name='crm_index'),
-      path('vacancy/',  views.vacancy_list, name='crm_vacancy'),
-      path('vacancy/details/<int:vacancy_id>', views.vacancy_details, name='vacancy_details'),
+      path('vacancies/',  views.vacancies_list, name='vacancies_list'),
+      path('vacancies/detail/<int:vacancy_id>', views.vacancies_detail, name='vacancy_details'),
+
+      path('candidates/',  views.candidates_list, name='candidates_list'),
+      path('candidates/detail/<int:candidat_id>', views.candidates_detail, name='candidat_details'),
+
 ]

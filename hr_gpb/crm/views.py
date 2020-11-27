@@ -1,12 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 import sys
 
-from .models import Vacancy, Skill
+from .models import Vacancy, Skill, Candidate
 
 def index(request):
       return render(request, 'index.html', context={"data": 'data'})
 
-def vacancy_list(request):
+def vacancies_list(request):
 
     all_vacancys = Vacancy.objects.all()
 
@@ -23,7 +23,7 @@ def vacancy_list(request):
 
     return render(request, 'vacancy.html', context={'data': data})
 
-def vacancy_details(request, vacancy_id):
+def vacancies_detail(request, vacancy_id):
     vacancy = get_object_or_404(Vacancy, id=vacancy_id)
 
     data = {
@@ -39,3 +39,17 @@ def vacancy_details(request, vacancy_id):
     }
     
     return render(request, 'vacancy_detail.html', context={'data': data})
+
+
+def candidates_list(request):
+    all_candidates = Candidate.objects.all()
+
+    data = {
+        'all_candidates': all_candidates,
+        # 'my_candidates': my_candidates
+    }
+
+    return render(request, 'candidates.html', context={'data': data})
+
+def candidates_detail(request, candidat_id):
+    return render(request, 'candidates.html', context={'data': 'data'})

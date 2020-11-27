@@ -1,0 +1,82 @@
+{% extends "base.html" %} {% load static %}
+{% block main %}
+<div class="row justify-content-center">
+          <div class="col-12 ">
+
+            <!-- Header -->
+            <div class="header mt-md-5">
+              <div class="header-body">
+
+                <!-- Pretitle -->
+                <h6 class="header-pretitle">
+                  Газпромбанк
+                </h6>
+
+                <!-- Title -->
+                <h1 class="header-title">
+                  Кандидаты
+                </h1>
+
+              </div>
+            </div>
+
+
+            <!-- Card -->
+
+            <!-- Files -->
+            <div class="card" data-list='{"valueNames": ["name"]}'>
+              <div class="card-header">
+
+                <!-- Title -->
+                <h4 class="card-header-title">
+                  Список кандидатов
+                </h4>
+
+              </div>
+              <div class="card-header">
+
+                <!-- Form -->
+                <form>
+                  <div class="input-group input-group-flush input-group-merge">
+
+                    <!-- Input -->
+                    <input type="search" class="form-control form-control-prepended search" placeholder="Поиск">
+
+                    <!-- Prepend -->
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <span class="fe fe-search"></span>
+                      </div>
+                    </div>
+
+                  </div>
+                </form>
+
+              </div>
+              <div class="card-body">
+
+                <!-- List -->
+                <ul class="list-group list-group-lg list-group-flush list my-n4">
+
+
+
+                  {% for candidat in data.all_candidats %}
+                        {% include 'candidat_list_item.html' with candidat=candidat %}
+                  {% endfor %}
+
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+              </div>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+
+{% endblock main %}
