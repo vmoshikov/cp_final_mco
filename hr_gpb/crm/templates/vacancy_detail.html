@@ -1,0 +1,76 @@
+{% extends "base.html" %} {% load static %}
+{% block main %}
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+            <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-selected="true">О вакансии</a>
+      </li>
+      <li class="nav-item pl-4">
+            <span class="nav-link disabled"><b>Подбор кандидатов:</b></span>
+      </li>
+      <li class="nav-item">
+            <a class="nav-link" id="new-tab" data-toggle="tab" href="#new" role="tab" aria-controls="new" aria-selected="false">Новые</a>
+      </li>
+      <li class="nav-item">
+            <a class="nav-link" id="tests-tab" data-toggle="tab" href="#tests" role="tab" aria-controls="tests" aria-selected="false">Тестирование</a>
+      </li>
+      <li class="nav-item">
+            <a class="nav-link" id="interview-tab" data-toggle="tab" href="#interview" role="tab" aria-controls="interview" aria-selected="false">Собеседование</a>
+      </li>
+      <li class="nav-item">
+            <a class="nav-link" id="secure-tab" data-toggle="tab" href="#secure" role="tab" aria-controls="secure" aria-selected="false">СБ</a>
+      </li>
+      <li class="nav-item">
+            <a class="nav-link" id="offer-tab" data-toggle="tab" href="#offer" role="tab" aria-controls="offer" aria-selected="false">Оффер</a>
+      </li>
+      <li class="nav-item ml-auto">
+            <a class="nav-link" id="decline-tab" data-toggle="tab" href="#decline" role="tab" aria-controls="decline" aria-selected="false">Отказ</a>
+      </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
+
+            {% include 'vacancy_detail_general_tab.html' with data=data %}
+
+      </div>
+
+      <div class="tab-pane fade" id="new" role="tabpanel" aria-labelledby="new-tab">
+
+            {% include 'vacancy_detail_tabgroups.html' with candidates=data.vacancy_requests.new %}
+
+      </div>
+      <div class="tab-pane fade" id="tests" role="tabpanel" aria-labelledby="tests-tab">
+      
+            {% include 'vacancy_detail_tabgroups.html' with candidates=data.vacancy_requests.tests %}
+      
+      </div>
+      <div class="tab-pane fade" id="interview" role="tabpanel" aria-labelledby="interview-tab">
+      
+            {% include 'vacancy_detail_tabgroups.html' with candidates=data.vacancy_requests.interview %}
+
+      </div>
+      <div class="tab-pane fade" id="secure" role="tabpanel" aria-labelledby="secure-tab">
+      
+            {% include 'vacancy_detail_tabgroups.html' with candidates=data.vacancy_requests.secure %}
+      
+      </div>
+      <div class="tab-pane fade" id="offer" role="tabpanel" aria-labelledby="offer-tab">
+      
+            {% include 'vacancy_detail_tabgroups.html' with candidates=data.vacancy_requests.offer %}
+      
+      </div>
+      <div class="tab-pane fade" id="decline" role="tabpanel" aria-labelledby="decline-tab">
+      
+            {% include 'vacancy_detail_tabgroups.html' with candidates=data.vacancy_requests.decline %}
+      
+      </div>
+</div>
+
+{% for requests in data.vacancy_requests %}
+
+      {{requests.cv_file.url}}
+
+{% endfor %}
+
+
+{% endblock main %}

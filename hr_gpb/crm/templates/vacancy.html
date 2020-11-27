@@ -1,10 +1,90 @@
 {% extends "base.html" %} {% load static %}
 {% block main %}
+<div class="row justify-content-center">
+          <div class="col-12 ">
 
-{{data}}
+            <!-- Header -->
+            <div class="header mt-md-5">
+              <div class="header-body">
 
-{% for vacancy in data.all_vacancys %}
-      {% include 'vacancy_list_item.html' with vacancy=vacancy %}
-{% endfor %}
+                <!-- Pretitle -->
+                <h6 class="header-pretitle">
+                  Газпромбанк
+                </h6>
+
+                <!-- Title -->
+                <h1 class="header-title">
+                  Вакансии
+                </h1>
+
+              </div>
+            </div>
+
+
+            <!-- Card -->
+
+            <!-- Files -->
+            <div class="card" data-list='{"valueNames": ["name"]}'>
+              <div class="card-header">
+
+                <!-- Title -->
+                <h4 class="card-header-title">
+                  Список вакансий
+                </h4>
+
+                <!-- Select -->
+                
+
+                <!-- Button -->
+                <a href="#!" class="btn btn-sm btn-primary">
+                  Создать вакансию
+                </a>
+
+              </div>
+              <div class="card-header">
+
+                <!-- Form -->
+                <form>
+                  <div class="input-group input-group-flush input-group-merge">
+
+                    <!-- Input -->
+                    <input type="search" class="form-control form-control-prepended search" placeholder="Поиск">
+
+                    <!-- Prepend -->
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <span class="fe fe-search"></span>
+                      </div>
+                    </div>
+
+                  </div>
+                </form>
+
+              </div>
+              <div class="card-body">
+
+                <!-- List -->
+                <ul class="list-group list-group-lg list-group-flush list my-n4">
+
+
+
+                  {% for vacancy in data.all_vacancys %}
+                        {% include 'vacancy_list_item.html' with vacancy=vacancy %}
+                  {% endfor %}
+
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+              </div>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
 
 {% endblock main %}
