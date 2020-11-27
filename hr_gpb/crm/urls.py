@@ -17,4 +17,7 @@ urlpatterns = [
       path('candidates/',  views.candidates_list, name='candidates_list'),
       path('candidates/detail/<int:candidat_id>', views.candidates_detail, name='candidat_details'),
 
+      path('ca/<int:ca_id>', views.ca_details, name='ca_details'),
+
+
 ]

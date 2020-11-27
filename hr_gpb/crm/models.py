@@ -104,11 +104,11 @@ class CandidateApplication(models.Model):
     Candidate, blank=True, related_name="condidate_applicatin", on_delete=models.CASCADE)
     core_vacancy = models.ForeignKey(
     Vacancy, blank=True, related_name="vacancy_applicatin", on_delete=models.CASCADE)
-    
 
     status = models.IntegerField(choices=SOURCES, default=SOURCES.website)
     cv_file = models.FileField(null=True, blank=True)
     cv_recognition = models.TextField(null=True, blank=True)
+    skills_assessment = models.JSONField(default={})
 
     created = models.DateTimeField(default=default_time)
 
