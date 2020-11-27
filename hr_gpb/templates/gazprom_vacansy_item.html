@@ -21,7 +21,51 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta content="telephone=no" name="format-detection">
 
+<style>
+.form-control {
+	    display: block;
+    width: 70%;
+    height: calc(1.5em + 1rem + 2px);
+    padding: .5rem .75rem;
+    font-size: .9375rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #12263f;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #d2ddec;
+    border-radius: .375rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
 
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #12263f;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: .5rem .75rem;
+    font-size: .9375rem;
+    line-height: 1.5;
+    border-radius: .375rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #2c7be5;
+    border-color: #2c7be5;
+}
+
+</style>
 
 
 
@@ -657,10 +701,10 @@
 {{data}}
 
 {% block content %}
-  <form method="post">
+  <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form|crispy }}
-    <button type="submit" class="btn btn-success">Отправить</button>
+    <button type="submit" class="btn btn-primary">Отправить</button>
   </form>
 {% endblock %}
 
