@@ -1,0 +1,20 @@
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="66.7%" y1="16.7%" x2="41.7%" y2="75%" id="linearGradient-1">
+            <stop stop-color="#37AEE2" offset="0%"></stop>
+            <stop stop-color="#1E96C8" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="66%" y1="43.7%" x2="85.1%" y2="80.2%" id="linearGradient-2">
+            <stop stop-color="#EFF7FC" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" fill-rule="nonzero">
+            <circle id="Oval" fill="url(#linearGradient-1)" cx="16" cy="16" r="16"></circle>
+            <path d="M13.0666667,23.3333333 C12.5482667,23.3333333 12.6364,23.1376 12.4576,22.644 L10.9333333,17.6276 L22.6666667,10.6666667" id="Path" fill="#C8DAEA"></path>
+            <path d="M13.0666667,23.3333333 C13.4666667,23.3333333 13.6433333,23.1504 13.8666667,22.9333333 L16,20.8589333 L13.3389333,19.2542667" id="Path" fill="#A9C9DD"></path>
+            <path d="M13.3386667,19.2546667 L19.7866667,24.0185333 C20.5225333,24.4245333 21.0534667,24.2142667 21.2368,23.3354667 L23.8614667,10.9670667 C24.1301333,9.88973333 23.4508,9.40093333 22.7468,9.72053333 L7.3348,15.6633333 C6.2828,16.0853333 6.28906667,16.6722667 7.14306667,16.9337333 L11.0981333,18.1682667 L20.2545333,12.3916 C20.6868,12.1294667 21.0836,12.2702667 20.758,12.5593333" id="Path" fill="url(#linearGradient-2)"></path>
+        </g>
+    </g>
+</svg>

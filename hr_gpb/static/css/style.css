@@ -1,0 +1,99 @@
+.offer {}
+
+.offer .offer-screen {
+      background-size: cover;
+      background-position: top center;
+      background-repeat: no-repeat;
+}
+
+.featured {}
+
+.featured .nav-link {
+      color: #3b506c;
+}
+
+.featured .nav-link.active {
+      background: transparent;
+      color: #00457c;
+      font-weight: 700;
+
+}
+
+.featured .nav-link.active i {
+      font-weight: 400;
+}
+
+.tab-content .card-header input.form-control-flush {
+      font-weight: bold;
+}
+
+.col-form-label {
+      font-size: 14px;
+      padding-left: 0;
+      padding-right: 10px;
+}
+
+.formset-item.hidden,
+.btn-delete-group.hidden {
+      display: none;
+}
+
+.btn-toggle-delete:hover,
+.btn-toggle-delete:focus .btn-add-form:hover,
+.btn-add-form:focus,
+.btn-delete-group .btn:hover,
+.btn-delete-group .btn:focus {
+      cursor: pointer;
+}
+
+/* #filter_form .select2-container .select2-selection--single {
+      padding-left: 0px;
+      border: none;
+      background: transparent;
+      font-weight: 400;
+      color: #00457c;
+      text-decoration: none;
+      display: flex;
+      margin-right: 20px;
+}
+
+#filter_form .select2-container .select2-selection--single:after {
+      width: auto;
+      height: auto;
+      margin-left: 14px;
+      border: none!important;
+      vertical-align: middle;
+      font-family: Feather;
+      content: "\e92e";
+} */
+
+.img-skewed {
+      -webkit-perspective: 1500px;
+      perspective: 1500px;
+      -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d
+}
+
+.img-skewed-left {
+      -webkit-perspective-origin: left center;
+      perspective-origin: left center
+}
+
+.img-skewed-left .img-skewed-item {
+      -webkit-transform: rotateY(-35deg) rotateX(15deg);
+      transform: rotateY(-35deg) rotateX(15deg);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden
+}
+
+.img-skewed-right {
+      -webkit-perspective-origin: right center;
+      perspective-origin: right center
+}
+
+.img-skewed-right .img-skewed-item {
+      -webkit-transform: rotateY(35deg) rotateX(15deg);
+      transform: rotateY(35deg) rotateX(15deg);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden
+}
