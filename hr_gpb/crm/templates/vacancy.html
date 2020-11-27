@@ -1,0 +1,10 @@
+{% extends "base.html" %} {% load static %}
+{% block main %}
+
+{{data}}
+
+{% for vacancy in data.all_vacancys %}
+      {% include 'vacancy_list_item.html' with vacancy=vacancy %}
+{% endfor %}
+
+{% endblock main %}
