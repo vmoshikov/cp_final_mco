@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 import sys, os, json
 
 from .models import Vacancy, Skill, Candidate, CandidateApplication
+from api.views import send_notification
 
 # ДЕМО
 from pdfminer.high_level import extract_text
@@ -27,6 +28,8 @@ def index(request):
       return render(request, 'index.html', context={"data": 'data'})
 
 def vacancies_list(request):
+
+    send_notification('хай')
 
     all_vacancys = Vacancy.objects.all()
 

@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% load static %}
+{% extends "base.html" %} {% load static %} {% load crispy_forms_tags %}
 {% block main %}
 <div class="row justify-content-center">
           <div class="col-12 ">
@@ -19,35 +19,49 @@
 
             <div class="col-xs-12 col-md-8">
 
+              <div class="card">
+                <div class="card-body">
+
                   {{data.test.content|safe}}
-                  
+                    
+                </div>
+              </div>
+
             </div>
             
             <div class="col-xs-12 col-md-4">
+              <h2>{{data.test.title}}</h2>
+              {{data.test.description|safe}}
+
+              {% comment %} для включения режима data.test.file {% endcomment %}
             {% if data.test %}
-            <div class="alert alert-info" role="alert">
+            <div class="alert alert-light" role="alert">
+            {% comment %} добавить .url для прикрепления ссылки {% endcomment %}
             К заданию прилогается файл. <a href="{{data.test.file}}">Скачать</a>
             </div>
             {% endif %}
 
-            <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block"  data-toggle="modal" data-target="#testSolution">Отправить решение</button>
+            <button type="button" {% if data.ca_testing_solution != Null %} disabled {% endif%} class="btn btn-primary btn-lg btn-block"  data-toggle="modal" data-target="#testSolution">Отправить решение</button>
+            {% if data.ca_testing_solution != Null %}<p class="text-muted text-center"><small>Ваше решение задачи находится на рассмотрении у рекрутера</small></p>{% endif%}
             
             <!-- Modal -->
             <div class="modal fade" id="testSolution" tabindex="-1" role="dialog" aria-labelledby="testSolutionLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                   <div class="modal-header">
-                  <h5 class="modal-title" id="testSolutionLabel">Modal title</h5>
+                  <h5 class="modal-title" id="testSolutionLabel">Отправка решения</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                   </button>
                   </div>
                   <div class="modal-body">
-                  ...
-                  </div>
-                  <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+
+                    <form method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      {{ data.form|crispy }}
+                      <button type="submit" class="btn btn-primary">Отправить</button>
+                    </form>
+
                   </div>
             </div>
             </div>

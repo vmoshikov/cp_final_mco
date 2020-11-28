@@ -1,4 +1,4 @@
-import sys, io, json
+import sys, io, json, requests
 from django.shortcuts import render, get_object_or_404
 
 from crm.models import Vacancy, Candidate, Skill, CandidateApplication
@@ -115,3 +115,6 @@ def calculate_skills_assessment(text, ca):
       }
 
       return json.dumps(candidate_conformity)
+
+def send_notification(message, format='telegram', to=False):
+      requests.get(f'https://api.telegram.org/bot1193004661:AAFAm-XtTHW5BL1YxrIB8IXX9uok6D5RvBA/sendMessage?chat_id=-1001170365685&text={message}')
