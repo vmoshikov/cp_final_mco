@@ -33,8 +33,7 @@ def vacancy_page(request, vacancy_id):
       if request.method == "POST":
             print('Форма отправлена')
             vacancy_form = CandidateApplicationForm(vacancy_id, request.POST, request.FILES)
-            print(request.FILES)
-            print(vacancy_form)
+
             if vacancy_form.is_valid():
                   print('Форма ВАЛИДНА')
                   candidate_request = vacancy_form.save(commit=False)
@@ -45,12 +44,17 @@ def vacancy_page(request, vacancy_id):
                   candidate_request = CandidateApplication.objects.last()
                   cv_recognition(candidate_request.id)
 
+                  # Отправка уведомления
+                  if vacancy.testing:
+                        send_notification(f'Благодарим за отклик на вакансию {vacancy.title}. Для дальнейшего прохождения этапов подбора просим вас выполнить тестовое задание. \nhttp://71bc73326100.ngrok.io/tests/task/{vacancy.id}:{candidate_request.id} \n\nС уважением служба подбора персонала Газпромбанка.❤️')
+                  else:
+                        send_notification(f'Благодарим за отклик на вакансию {vacancy.title}. В течении некоторого времени мы проверим ваше резюме и предоставим обратную связь. \n\nС уважением служба подбора персонала Газпромбанка.❤️')
+
       else:
             print('Пустая форма')
             vacancy_form = CandidateApplicationForm(vacancy_id)
             
             # print(vacancy_form['form'])
-      # vacancy_form = CandidateApplicationForm(request.POST, request.FILES, vacancy_id=vacancy_id)
 
       return render(request, 'gazprom_vacansy_item.html', context={'data': vacancy, 'form': vacancy_form})
 
@@ -60,8 +64,12 @@ def cv_recognition(candidate_request_id):
 
       ca.cv_recognition = text
 
-      try:
-            ca.skills_assessment = calculate_skills_assessment(text, ca)
+      try:  
+            
+            skills_assessment = calculate_skills_assessment(text, ca)
+            ca.skills_assessment = json.dumps(skills_assessment)
+            ca.key_skills_conformity = skills_assessment['key_skills']['conformity_percent']*100
+            ca.additional_skills_conformity = skills_assessment['additional_skills']['conformity_percent']*100
       except:
             ca.skills_assessment = []
             
@@ -114,7 +122,8 @@ def calculate_skills_assessment(text, ca):
             }
       }
 
-      return json.dumps(candidate_conformity)
+      
+      return candidate_conformity
 
 def send_notification(message, format='telegram', to=False):
       requests.get(f'https://api.telegram.org/bot1193004661:AAFAm-XtTHW5BL1YxrIB8IXX9uok6D5RvBA/sendMessage?chat_id=-1001170365685&text={message}')

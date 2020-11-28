@@ -23,7 +23,7 @@
                         {% if application.core_vacancy.testing %}
 
                               {% if application.testing_solution.status == 0 %}
-                                    <p class="mb-0 text-info"><small><span class="fe fe-x mr-2"></span>Решение отклонено</small></p>
+                                    <p class="mb-0 text-danger"><small><span class="fe fe-x mr-2"></span>Решение отклонено</small></p>
                               {% elif application.testing_solution.status == 1 %}
                                     <p class="mb-0 text-info"><small><span class="fe fe-check mr-2"></span>Есть решение</small></p>
                               {% elif application.testing_solution.status == 2 %}
@@ -34,25 +34,81 @@
 
                         {% endif %}
                     <!-- Title -->
-                    <h4 class="mb-1"><b>{{ application.core_condidate.fullname }}</b></h4>
+                    <h4 class="mb-3"><b>{{ application.core_condidate.fullname }}</b></h4>
 
-                    <!-- Text -->
-                    <p class="card-text small text-muted mb-1">
-                     Ключевые навыки: 
-                    </p>
+                  <div class="row align-items-center mb-2">
+                        <div class="col">
+
+                          <!-- Title -->
+                          <h6 class="text-uppercase text-muted mb-2">
+                            Ключевые навыки
+                          </h6>
+
+                          <div class="row align-items-center no-gutters">
+                            <div class="col-auto">
+
+                              <!-- Heading -->
+                              <span class="h5 mr-2 mb-0">
+                                {{application.key_skills_conformity}}%
+                              </span>
+
+                            </div>
+                            <div class="col">
+
+                              <!-- Progress -->
+                              <div class="progress progress-sm">
+                                <div class="progress-bar" role="progressbar" style="width: {{application.key_skills_conformity}}%" aria-valuenow="{{application.key_skills_conformity}}" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+
+                            </div>
+                          </div> <!-- / .row -->
+
+                        </div>
+                  </div>
+                  <div class="row align-items-center">
+                        <div class="col">
+
+                          <!-- Title -->
+                          <h6 class="text-uppercase text-muted mb-2">
+                            Вспомогательные навыки
+                          </h6>
+
+                          <div class="row align-items-center no-gutters">
+                            <div class="col-auto">
+
+                              <!-- Heading -->
+                              <span class="h5 mr-2 mb-0">
+                                {{application.additional_skills_conformity}}%
+                              </span>
+
+                            </div>
+                            <div class="col">
+
+                              <!-- Progress -->
+                              <div class="progress progress-sm">
+                                <div class="progress-bar" role="progressbar" style="width: {{application.additional_skills_conformity}}%" aria-valuenow="{{application.additional_skills_conformity}}" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+
+                            </div>
+                          </div> <!-- / .row -->
+
+                        </div>
+                  </div>
+
+
                         {% comment %} {{ application.skills_assessment }} {% endcomment %}
                     <!-- Status -->
-                    <p class="card-text small">
+                    {% comment %} <p class="card-text small">
                        Опыт работы: <span>18</span> лет
-                    </p>
+                    </p> {% endcomment %}
 
                   </div>
                   <div class="col-auto">
 
                     <!-- Button -->
-                    <div class="badge badge-soft-warning ">
-                      40%
-                    </div>
+                    {% comment %} <div class="badge badge-soft-warning ">
+                    {{application.core_condidate.fullname|make_list|first}}
+                    </div> {% endcomment %}
 
                   </div>
                   
@@ -134,11 +190,33 @@
 
                   {% endif %}
 
+
             <!-- Card -->
             <div class="card">
               <div class="card-body">
 
-                  
+                  <form method="POST" id="notice_form">
+                        <input type="text" class="form-control form-control-flush" placeholder="Комментарий">
+            
+
+
+                  <div class="card-footer d-flex align-items-center">
+                        <div class="col">
+
+                        <!-- Symbols -->
+                        <small class="text-muted" id="message_counter">
+                              0/250
+                        </small>
+
+                        </div>
+                        <div class="col-auto">
+
+                              <button type="submit" name="add_notice" class="btn btn-light">Добавить</button>
+
+                        </div>
+                  </div>
+
+                  </form>
 
               </div>
             </div>
@@ -236,21 +314,21 @@
 
           </div>
         </div>
-      {{application.core_vacancy.testing}}
+      {% comment %} {{application.core_vacancy.testing}}
 
       {{application.testing_solution}}
 
-      
+       {% endcomment %}
 
 
-      <br><br>
+      {% comment %} <br><br>
 
       {{application.cv_file.url}}
       
       <br><br>
       
       {{ application.skills_assessment }}
-      
+       {% endcomment %}
       </div>
 
 {% endfor %}

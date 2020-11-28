@@ -29,8 +29,6 @@ def index(request):
 
 def vacancies_list(request):
 
-    send_notification('хай')
-
     all_vacancys = Vacancy.objects.all()
 
     # При отсутствующей авторизации

@@ -124,6 +124,8 @@ class CandidateApplication(models.Model):
     cv_file = models.FileField(null=True, blank=True)
     cv_recognition = models.TextField(null=True, blank=True)
     skills_assessment = models.JSONField(default={})
+    key_skills_conformity = models.IntegerField(default=0)
+    additional_skills_conformity = models.IntegerField(default=0)
 
     created = models.DateTimeField(default=default_time)
 
