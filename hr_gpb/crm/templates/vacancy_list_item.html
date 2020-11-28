@@ -15,12 +15,16 @@
                         <!-- Title -->
                         <h4 class="mb-1 name">
                           <a href="{% url 'crm:vacancy_details' vacancy.id %}">{{ vacancy.title }}</a>
+                          {% if vacancy.testing %}
+                            <span class="badge badge-soft-info"><span class="fe fe-zap mr-1"></span> Тестовое задание</span>
+                          {% endif %}
                         </h4>
 
                         <!-- Text -->
                         <p class="card-text small text-muted mb-1">
                           CTO отдела разработки внутренней HR-системы
                         </p>
+
 
                         <!-- Time -->
                         <p class="card-text small text-muted">

@@ -1,0 +1,74 @@
+{% extends "base.html" %} {% load static %}
+{% block main %}
+<div class="row justify-content-center">
+          <div class="col-12 ">
+
+            <!-- Header -->
+            <div class="header mt-md-5">
+              <div class="header-body">
+              
+                <!-- Title -->
+                <h1 class="header-title">
+                  Тестовое задание для вакансии: {{data.vacancy.title}}
+                </h1>
+
+              </div>
+            </div>
+
+            <div class="row">
+
+            <div class="col-xs-12 col-md-8">
+
+                  {{data.test.content|safe}}
+                  
+            </div>
+            
+            <div class="col-xs-12 col-md-4">
+            {% if data.test %}
+            <div class="alert alert-info" role="alert">
+            К заданию прилогается файл. <a href="{{data.test.file}}">Скачать</a>
+            </div>
+            {% endif %}
+
+            <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block"  data-toggle="modal" data-target="#testSolution">Отправить решение</button>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="testSolution" tabindex="-1" role="dialog" aria-labelledby="testSolutionLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                  <div class="modal-header">
+                  <h5 class="modal-title" id="testSolutionLabel">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+                  </div>
+                  <div class="modal-body">
+                  ...
+                  </div>
+                  <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+            </div>
+            </div>
+            </div>
+
+            </div>
+
+            </div>      
+
+            
+
+
+          </div>
+        </div>
+
+
+
+              </div>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+
+{% endblock main %}

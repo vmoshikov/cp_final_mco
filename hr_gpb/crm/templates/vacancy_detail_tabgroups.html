@@ -83,6 +83,15 @@
             </div>
 
       </div>
+      {{application.core_vacancy.testing}}
+
+      {{application.testing_solution}}
+
+      http://71bc73326100.ngrok.io{% url 'tests:test_page' application.core_vacancy.id application.id %}
+
+
+      <br><br>
+
       {{application.cv_file.url}}
       
       <br><br>

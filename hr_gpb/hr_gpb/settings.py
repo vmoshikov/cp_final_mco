@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crm.apps.CrmConfig',
     'api.apps.ApiConfig',
+    'tests.apps.TestsConfig',
     'crispy_forms',
 ]
 

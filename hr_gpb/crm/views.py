@@ -128,3 +128,8 @@ def ca_details(request, ca_id):
     
 
     return render(request, 'demo_data.html', context={'data': json.dumps(candidate_conformity)})
+
+
+
+def demo_task(request):
+    return render(request, 'demo_task.html', context={'data': "data"})
