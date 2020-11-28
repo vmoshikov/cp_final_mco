@@ -1,0 +1,152 @@
+<div class="row">
+      <div class="col-md-6 h-100 d-inline-block py-4">
+            {{data.vacancy.description}}
+            <h2><b>Предстоит заниматься:</b></h2>
+            <ul>
+            {% for duty in data.vacancy.duties.all %}
+                  <li>{{duty}}</li>
+            {% endfor %}
+            </ul>
+
+            <h2><b>От вас ожидаем:</b></h2>
+            <ul>
+            <li>Опыт работы/разработки с 
+                  {% for key_skill in data.vacancy.key_skills.all %}
+                        <span>{{key_skill.title}}, </span>
+                  {% endfor %}
+            </li>
+
+            <li>Стаж работы по требуемому направлению деятельности: от {{data.vacancy.experience}} лет</li>
+
+            <li>Профессионально значимые качества: 
+                  {% for additional_skill in data.vacancy.additional_skills.all %}
+                        <span>{{additional_skill.title}}, </span>
+                  {% endfor %}
+            
+            </li>
+            </ul>
+
+            <h2><b>Мы предлагаем:</b></h2>
+            <ul>
+            {% for condition in data.vacancy.conditions.all %}
+                  <li>{{condition}}</li>
+            {% endfor %}
+            </ul>
+
+            город {{data.vacancy.get_city_display}}
+            
+
+
+      </div>
+      <div class="col-md-6 h-100 d-inline-block">
+            <div class="card-body">
+                  
+                  <div class="mb-4">
+                        <span class="badge badge-soft-primary">Опубликовано на HH</span>
+                        <span class="badge badge-soft-primary">Опубликовано на SuperJob</span>
+                  </div>
+
+                    <!-- List group -->
+                    <div class="list-group list-group-flush list-group-activity my-n3">
+                      <div class="list-group-item">
+                        <div class="row">
+                          <div class="col-auto">
+
+                            <!-- Avatar -->
+                            <div class="avatar avatar-sm">
+                              <div class="avatar-title font-size-lg bg-primary-soft rounded-circle text-primary">
+                                <i class="fe fe-mail"></i>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="col ml-n2">
+
+                            <!-- Heading -->
+                            <h5 class="mb-1">
+                               1.4.0 update email sent
+                            </h5>
+
+                            <!-- Text -->
+                            <p class="small text-gray-700 mb-0">
+                              Sent to all 1,851 subscribers over a 24 hour period
+                            </p>
+
+                            <!-- Time -->
+                            <small class="text-muted">
+                              2m ago
+                            </small>
+
+                          </div>
+                        </div> <!-- / .row -->
+                      </div>
+                      <div class="list-group-item">
+                        <div class="row">
+                          <div class="col-auto">
+
+                            <!-- Avatar -->
+                            <div class="avatar avatar-sm">
+                              <div class="avatar-title font-size-lg bg-primary-soft rounded-circle text-primary">
+                                <i class="fe fe-archive"></i>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="col ml-n2">
+
+                            <!-- Heading -->
+                            <h5 class="mb-1">
+                              New project "" created
+                            </h5>
+
+                            <!-- Text -->
+                            <p class="small text-gray-700 mb-0">
+                              Looks like there might be a new theme soon.
+                            </p>
+
+                            <!-- Time -->
+                            <small class="text-muted">
+                              2h ago
+                            </small>
+
+                          </div>
+                        </div> <!-- / .row -->
+                      </div>
+                      <div class="list-group-item">
+                        <div class="row">
+                          <div class="col-auto">
+
+                            <!-- Avatar -->
+                            <div class="avatar avatar-sm">
+                              <div class="avatar-title font-size-lg bg-primary-soft rounded-circle text-primary">
+                                <i class="fe fe-code"></i>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="col ml-n2">
+
+                            <!-- Heading -->
+                            <h5 class="mb-1">
+                               1.5.0 was deployed.
+                            </h5>
+
+                            <!-- Text -->
+                            <p class="small text-gray-700 mb-0">
+                              A successful to deploy to production was executed.
+                            </p>
+
+                            <!-- Time -->
+                            <small class="text-muted">
+                              2m ago
+                            </small>
+
+                          </div>
+                        </div> <!-- / .row -->
+                      </div>
+                    </div>
+
+                  </div>
+      </div>
+
+</div>

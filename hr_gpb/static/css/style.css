@@ -97,3 +97,12 @@
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden
 }
+
+.nav-pills .nav-link.active {
+      background: transparent;
+      color: inherit;
+}
+
+.nav-pills .nav-link.active > .card {
+      border-left: solid 6px #00457c;
+}

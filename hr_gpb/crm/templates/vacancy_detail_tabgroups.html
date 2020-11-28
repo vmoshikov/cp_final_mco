@@ -1,1 +1,100 @@
-{{candidates}}
+<div class="row">
+<div class="col-md-4 h-100 d-inline-block">
+      
+        <div class="nav flex-column nav-pills h-100" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+{% for application in applications %}
+
+      <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#candidate_application_{{application.core_condidate.id}}" role="tab" aria-controls="candidate_application_{{application.core_condidate.id}}" aria-selected="true">
+      
+<div class="card mb-0">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-auto">
+
+                    <!-- Avatar -->
+                        <div class="avatar avatar-md">
+                              <span class="avatar-title rounded-circle">CF</span>
+                        </div>
+
+                  </div>
+                  <div class="col">
+
+                    <!-- Title -->
+                    <h4 class="mb-1">{{ application.core_condidate.fullname }}</h4>
+
+                    <!-- Text -->
+                    <p class="card-text small text-muted mb-1">
+                     Ключевые навыки: 
+                    </p>
+                        {% comment %} {{ application.skills_assessment }} {% endcomment %}
+                    <!-- Status -->
+                    <p class="card-text small">
+                       Опыт работы: <span>18</span> лет
+                    </p>
+
+                  </div>
+                  <div class="col-auto">
+
+                    <!-- Button -->
+                    <div class="badge badge-soft-warning ">
+                      40%
+                    </div>
+
+                  </div>
+                  
+                  <div class="col-auto">
+
+
+
+                  </div>
+                </div> <!-- / .row -->
+              </div> <!-- / .card-body -->
+            </div>
+      
+      </a>
+
+      
+
+{% endfor %}
+</div>
+
+
+</div>
+<div class="col-md-8 h-100 d-inline-block">
+
+<div class="tab-content" id="v-pills-tabContent">
+      <div class="tab-pane fade show active h-100" id="candidate_application_{{application.core_condidate.id}}" role="tabpanel" aria-labelledby="candidate_application_{{application.core_condidate.id}}-tab">
+      <h5>Выберите кандидата</h5>
+      </div>
+
+{% for application in applications %}
+
+      <div class="tab-pane fade h-100 py-4" id="candidate_application_{{application.core_condidate.id}}" role="tabpanel" aria-labelledby="candidate_application_{{application.core_condidate.id}}-tab">
+      
+      <div class="row">
+
+            <div class="col">
+            </div>
+                   
+            <div class="col-auto">
+            <a class="btn btn-sm btn-outline-primary" href="{{application.cv_file.path}}"><span class="fe fe-file mr-1"></span>Резюме</a>
+            <button type="button" name="" id="" class="btn btn-sm btn-outline-success"><span class="fe fe-arrow-up-circle mr-1"></span>Сменить этап</button>
+            </div>
+
+      </div>
+      {{application.cv_file.url}}
+      
+      <br><br>
+      
+      {{ application.skills_assessment }}
+      
+      </div>
+
+{% endfor %}
+
+</div>
+      
+</div>
+</div>
+

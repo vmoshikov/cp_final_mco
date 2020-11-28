@@ -1,6 +1,19 @@
 {% extends "base.html" %} {% load static %}
 {% block main %}
 
+            <!-- Header -->
+            <div class="header mb-md-4">
+              <div class="header-body">
+
+                <!-- Title -->
+                <h1 class="header-title">
+                  {{ data.vacancy.title }} <span class="badge badge-soft-{% if data.vacancy.status == 0 %}success{% elif data.vacancy.status == 1 %}primary{% else %}dark{% endif %}">{{ data.vacancy.get_status_display }}</span>
+                </h1>
+
+              </div>
+            </div>
+
+
 <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
             <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-selected="true">О вакансии</a>
@@ -9,22 +22,22 @@
             <span class="nav-link disabled"><b>Подбор кандидатов:</b></span>
       </li>
       <li class="nav-item">
-            <a class="nav-link" id="new-tab" data-toggle="tab" href="#new" role="tab" aria-controls="new" aria-selected="false">Новые</a>
+            <a class="nav-link" id="new-tab" data-toggle="tab" href="#new" role="tab" aria-controls="new" aria-selected="false">Новые <span class="badge badge-soft-dark">{{data.vacancy_requests.new.count }}</span></a>
       </li>
       <li class="nav-item">
-            <a class="nav-link" id="tests-tab" data-toggle="tab" href="#tests" role="tab" aria-controls="tests" aria-selected="false">Тестирование</a>
+            <a class="nav-link" id="tests-tab" data-toggle="tab" href="#tests" role="tab" aria-controls="tests" aria-selected="false">Тестирование <span class="badge badge-soft-dark">{{data.vacancy_requests.tests.count }}</span></a>
       </li>
       <li class="nav-item">
-            <a class="nav-link" id="interview-tab" data-toggle="tab" href="#interview" role="tab" aria-controls="interview" aria-selected="false">Собеседование</a>
+            <a class="nav-link" id="interview-tab" data-toggle="tab" href="#interview" role="tab" aria-controls="interview" aria-selected="false">Собеседование <span class="badge badge-soft-dark">{{data.vacancy_requests.interview.count }}</span></a>
       </li>
       <li class="nav-item">
-            <a class="nav-link" id="secure-tab" data-toggle="tab" href="#secure" role="tab" aria-controls="secure" aria-selected="false">СБ</a>
+            <a class="nav-link" id="secure-tab" data-toggle="tab" href="#secure" role="tab" aria-controls="secure" aria-selected="false">СБ <span class="badge badge-soft-dark">{{data.vacancy_requests.secure.count }}</span></a>
       </li>
       <li class="nav-item">
-            <a class="nav-link" id="offer-tab" data-toggle="tab" href="#offer" role="tab" aria-controls="offer" aria-selected="false">Оффер</a>
+            <a class="nav-link" id="offer-tab" data-toggle="tab" href="#offer" role="tab" aria-controls="offer" aria-selected="false">Оффер <span class="badge badge-soft-dark">{{data.vacancy_requests.offer.count }}</span></a>
       </li>
       <li class="nav-item ml-auto">
-            <a class="nav-link" id="decline-tab" data-toggle="tab" href="#decline" role="tab" aria-controls="decline" aria-selected="false">Отказ</a>
+            <a class="nav-link" id="decline-tab" data-toggle="tab" href="#decline" role="tab" aria-controls="decline" aria-selected="false">Отказ <span class="badge badge-soft-dark">{{data.vacancy_requests.decline.count }}</span></a>
       </li>
 </ul>
 <div class="tab-content" id="myTabContent">
@@ -36,32 +49,32 @@
 
       <div class="tab-pane fade" id="new" role="tabpanel" aria-labelledby="new-tab">
 
-            {% include 'vacancy_detail_tabgroups.html' with candidates=data.vacancy_requests.new %}
+            {% include 'vacancy_detail_tabgroups.html' with applications=data.vacancy_requests.new %}
 
       </div>
       <div class="tab-pane fade" id="tests" role="tabpanel" aria-labelledby="tests-tab">
       
-            {% include 'vacancy_detail_tabgroups.html' with candidates=data.vacancy_requests.tests %}
+            {% include 'vacancy_detail_tabgroups.html' with applications=data.vacancy_requests.tests %}
       
       </div>
       <div class="tab-pane fade" id="interview" role="tabpanel" aria-labelledby="interview-tab">
       
-            {% include 'vacancy_detail_tabgroups.html' with candidates=data.vacancy_requests.interview %}
+            {% include 'vacancy_detail_tabgroups.html' with applications=data.vacancy_requests.interview %}
 
       </div>
       <div class="tab-pane fade" id="secure" role="tabpanel" aria-labelledby="secure-tab">
       
-            {% include 'vacancy_detail_tabgroups.html' with candidates=data.vacancy_requests.secure %}
+            {% include 'vacancy_detail_tabgroups.html' with applications=data.vacancy_requests.secure %}
       
       </div>
       <div class="tab-pane fade" id="offer" role="tabpanel" aria-labelledby="offer-tab">
       
-            {% include 'vacancy_detail_tabgroups.html' with candidates=data.vacancy_requests.offer %}
+            {% include 'vacancy_detail_tabgroups.html' with applications=data.vacancy_requests.offer %}
       
       </div>
       <div class="tab-pane fade" id="decline" role="tabpanel" aria-labelledby="decline-tab">
       
-            {% include 'vacancy_detail_tabgroups.html' with candidates=data.vacancy_requests.decline %}
+            {% include 'vacancy_detail_tabgroups.html' with applications=data.vacancy_requests.decline %}
       
       </div>
 </div>

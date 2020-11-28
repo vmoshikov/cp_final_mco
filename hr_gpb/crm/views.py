@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-import sys, json
+import sys, os, json
 
 from .models import Vacancy, Skill, Candidate, CandidateApplication
 
@@ -21,7 +21,6 @@ from natasha import (
     PER
 )
 
-import os
 
 
 def index(request):
@@ -50,12 +49,12 @@ def vacancies_detail(request, vacancy_id):
     data = {
         "vacancy": vacancy,
         "vacancy_requests": {
-            "new": "new",
-            "tests": "tests",
-            "interview": "interview",
-            "secure": "secure",
-            "offer": "offer",
-            "decline": "decline"
+            "new": CandidateApplication.objects.filter(core_vacancy=vacancy, status=1),
+            "tests": CandidateApplication.objects.filter(core_vacancy=vacancy, status=2),
+            "interview": CandidateApplication.objects.filter(core_vacancy=vacancy, status=3),
+            "secure": CandidateApplication.objects.filter(core_vacancy=vacancy, status=4),
+            "offer": CandidateApplication.objects.filter(core_vacancy=vacancy, status=5),
+            "decline": CandidateApplication.objects.filter(core_vacancy=vacancy, status=0)
         },
     }
     
@@ -75,6 +74,9 @@ def candidates_list(request):
 def candidates_detail(request, candidat_id):
     return render(request, 'candidates.html', context={'data': 'data'})
 
+
+
+# Дебаг
 def ca_details(request, ca_id):
 
     ca = get_object_or_404(CandidateApplication, id=ca_id)

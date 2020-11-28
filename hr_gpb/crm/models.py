@@ -83,7 +83,7 @@ class Vacancy(models.Model):
     conditions = models.ManyToManyField(
         Сondition, blank=True, related_name="vacancy_conditions"
     )
-    status = models.IntegerField(choices=CITIES, default=CITIES.any, null=True)
+    city = models.IntegerField(choices=CITIES, default=CITIES.any, null=True)
 
     created = models.DateTimeField(default=default_time)
     updated = models.DateTimeField(auto_now=True)
@@ -99,13 +99,22 @@ class CandidateApplication(models.Model):
         (1, "hh", "HeadHunter"),
         (2, "sj", "SuperJob"),
     )
+    STATUS = Choices(
+        (0, "decline", "Отказ"),
+        (1, "new", "Новая"),
+        (2, "testing", "Тестирование"),
+        (3, "interview", "Собеседование"),
+        (4, "secure", "Служба безопасности"),
+        (5, "offer", "Оффер"),
+    )
 
     core_condidate = models.ForeignKey(
     Candidate, blank=True, related_name="condidate_applicatin", on_delete=models.CASCADE)
     core_vacancy = models.ForeignKey(
     Vacancy, blank=True, related_name="vacancy_applicatin", on_delete=models.CASCADE)
 
-    status = models.IntegerField(choices=SOURCES, default=SOURCES.website)
+    status = models.IntegerField(choices=STATUS, default=STATUS.new)
+    source = models.IntegerField(choices=SOURCES, default=SOURCES.website)
     cv_file = models.FileField(null=True, blank=True)
     cv_recognition = models.TextField(null=True, blank=True)
     skills_assessment = models.JSONField(default={})

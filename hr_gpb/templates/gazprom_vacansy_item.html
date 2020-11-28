@@ -678,27 +678,12 @@
                                         								    </div>
 							    </div>
 						    </div>
-                        						    <div class="slider-news__content js-tab__content active" id="content_1_0" role="tabpanel" aria-labelledby="basic-5648537" style="outline: none;">
-							    <div class="slider-news__title focusable" tabindex="0" style="box-shadow: 0px 0px 0px; outline: none;">Вакансия - {{data.name}}</div>
-							    <div class="slider-news__text">
-                                    Разработка и внедрение самых передовых цифровых технологий – залог опережающего развития Газпромбанка.<br>
- <br>
- ИТ в Газпромбанке — это сотни профессионалов из Москвы, Санкт-Петербурга и Казани. Разработчики, архитекторы, аналитики, тестировщики, администраторы и сотрудники поддержки трудятся над оптимизацией и эффективностью, строят архитектуру банка, поддерживают его ИТ-стабильность и отказоустойчивость банковских систем.<br>
- <br>
- Одна из приоритетных задач Банка –<b> </b>развитие<b> Омниканальной платформы</b>, новой системы, предоставляющей клиентам банковские продукты сразу по всем доступным каналам, через мобильное приложение, личный кабинет, сайт, банкоматы, колл-центр, офисы и другие доступные банку средства коммуникации. <br>
- <br>
- Разработчики омниканальной платформы создают микросервисы, решающие задачи бизнеса, с нулевым временем простоя под высокой нагрузкой с минимальным временем отклика.<br>
- <br>
- Также мы ищем таланты для построения <b>системы автоматизированной обработки кредитных заявок</b> и создания технологической платформы лаборатории данных.<br>
- <br>
- У нас нет дресс кода, в наших современных офисах царит отличная атмосфера, мы вместе не только работаем, но и отдыхаем!<br>
- <br>
-<p>
-</p>
+<div class="slider-news__content js-tab__content active" id="content_1_0" role="tabpanel" aria-labelledby="basic-5648537" style="outline: none;">
+<div class="slider-news__title focusable" tabindex="0" style="box-shadow: 0px 0px 0px; outline: none;">Вакансия - {{data.title}}</div>
+<div class="slider-news__text">
+<p>Описание вакансии (резюме)</p>
 
 {% load crispy_forms_tags %}
-
-{{data}}
 
 {% block content %}
   <form method="post" enctype="multipart/form-data">
@@ -725,7 +710,7 @@
 				    <div class="tabs-list__menu js-tabs__headcontainer" role="tablist" aria-label=" ">
 					    <div class="js-relative-block" style="top: 60px; height: 24px; width: 4px;"></div>
                                                 						    <button class="tabs-list__link js-tab__head focusable" id="basic-5584773" role="tab" aria-selected="false" tabindex="-2" aria-controls="content_0_0" style="box-shadow: 0px 0px 0px; outline: none;">Работа в Газпромбанке</button>
-                        						    <button class="tabs-list__link js-tab__head focusable active" id="basic-5648537" role="tab" aria-selected="true" tabindex="0" aria-controls="content_1_0" style="box-shadow: 0px 0px 0px; outline: none;">Вакансии - {{data.name}}</button>
+                        						    <button class="tabs-list__link js-tab__head focusable active" id="basic-5648537" role="tab" aria-selected="true" tabindex="0" aria-controls="content_1_0" style="box-shadow: 0px 0px 0px; outline: none;">Вакансии - {{data.title}}</button>
                         						    <button class="tabs-list__link js-tab__head focusable" id="basic-5648539" role="tab" aria-selected="false" tabindex="-2" aria-controls="content_2_0" style="box-shadow: 0px 0px 0px; outline: none;">Вакансии - Розничный блок (Москва)</button>
                         						    <button class="tabs-list__link js-tab__head focusable" id="basic-5648545" role="tab" aria-selected="false" tabindex="-2" aria-controls="content_3_0" style="box-shadow: 0px 0px 0px; outline: none;">Вакансии - Другие направления банковской деятельности</button>
                         						    <button class="tabs-list__link js-tab__head focusable" id="basic-5648547" role="tab" aria-selected="false" tabindex="-2" aria-controls="content_4_0" style="box-shadow: 0px 0px 0px; outline: none;">Вакансии - Филиалы</button>
