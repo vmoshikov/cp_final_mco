@@ -1,4 +1,5 @@
 <div class="row">
+
 <div class="col">
 <b>Решение кандидата</b>
 
@@ -11,9 +12,17 @@
 {% if testing.file %}
       <a href="{{testing.file.url}}" target="_blank"><span class="fe fe-file mr-1">Файл</a>
 {% endif %}
+
+{% if testing.reviewer_comment %}
+<br>
+<b>Комментарий кодревью</b>
+
+{{testing.reviewer_comment}}
+
+{% endif%}
 </div>
 
-{% if testing.status == 1%}
+{% if testing.status == 1 %}
 <div class="col-auto">
       <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <button type="button" class="btn btn-outline-success"><span class="fe fe-check"></button> 

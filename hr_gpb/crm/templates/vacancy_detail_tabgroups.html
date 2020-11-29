@@ -328,7 +328,7 @@
             </div>
             {% if application.core_vacancy.testing %}
             <p class="text-center mb-0"><small><a href="http://71bc73326100.ngrok.io{% url 'tests:test_page' application.core_vacancy.id application.id %}" target="_blank">Ссылка на тестовое задание</a></small></p>
-            <p class="text-center mb-0"><small><a href="http://71bc73326100.ngrok.io{% url 'tests:test_page' application.core_vacancy.id application.id %}" target="_blank">Ссылка для ревьювера</a></small></p>
+            <p class="text-center mb-0"><small><a href="http://71bc73326100.ngrok.io{% url 'tests:review_page' application.core_vacancy.id application.id %}" target="_blank">Ссылка для ревьювера</a></small></p>
             {% endif %}
 
           </div>

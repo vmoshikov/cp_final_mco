@@ -22,6 +22,7 @@ def test_page(request, vacancy_id, ca_id):
             if testing_form.is_valid():
                   print('Форма ВАЛИДНА')
                   testing_form.save()
+                  
                   testing_solution = TestingSolution.objects.last()
                   ca.testing_solution = testing_solution
                   ca.save()
@@ -54,7 +55,6 @@ def review_page(request, vacancy_id, ca_id):
             if review_form.is_valid():
                   print('Форма ВАЛИДНА')
                   review_form.save()
-
 
       else:
             print('Пустая форма')
