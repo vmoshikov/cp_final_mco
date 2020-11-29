@@ -1,0 +1,96 @@
+<a class="nav-link"  id="candidate_application-tab_{{application.id}}" data-toggle="pill" href="#candidate_application_{{application.id}}" role="tab" aria-controls="candidate_application_{{application.core_condidate.id}}" aria-selected="true">
+      
+<div class="card mb-0">
+  <div class="card-body">
+    <div class="row align-items-center">
+      <div class="col-auto">
+
+        <!-- Avatar -->
+            <div class="avatar avatar-md">
+                  <span class="avatar-title rounded-circle">{{application.core_condidate.fullname|make_list|first}}</span>
+            </div>
+
+      </div>
+      <div class="col">
+
+            {% if application.core_vacancy.testing %}
+
+                  {% if application.testing_solution.status == 0 %}
+                        <p class="mb-0 text-danger"><small><span class="fe fe-x mr-2"></span>Решение отклонено</small></p>
+                  {% elif application.testing_solution.status == 1 %}
+                        <p class="mb-0 text-info"><small><span class="fe fe-check mr-2"></span>Есть решение</small></p>
+                  {% elif application.testing_solution.status == 2 %}
+                        <p class="mb-0 text-success"><small><span class="fe fe-award mr-2"></span>Решение принято</small></p>
+                  {% else %}
+                        <p class="mb-0 text-warning"><small><span class="fe fe-loader mr-2"></span>Ожидается решение</small></p>
+                  {% endif %}
+
+            {% endif %}
+        <!-- Title -->
+        <h4 class="mb-3"><b>{{ application.core_condidate.fullname }}</b></h4>
+
+      <div class="row align-items-center mb-2">
+            <div class="col">
+
+              <!-- Title -->
+              <h6 class="text-uppercase text-muted mb-2">
+                Ключевые навыки
+              </h6>
+
+              <div class="row align-items-center no-gutters">
+                <div class="col-auto">
+
+                  <!-- Heading -->
+                  <span class="h5 mr-2 mb-0">
+                    {{application.key_skills_conformity}}%
+                  </span>
+
+                </div>
+                <div class="col">
+
+                  <!-- Progress -->
+                  <div class="progress progress-sm">
+                    <div class="progress-bar" role="progressbar" style="width: {{application.key_skills_conformity}}%" aria-valuenow="{{application.key_skills_conformity}}" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+
+                </div>
+              </div> <!-- / .row -->
+
+            </div>
+      </div>
+      <div class="row align-items-center">
+            <div class="col">
+
+              <!-- Title -->
+              <h6 class="text-uppercase text-muted mb-2">
+                Вспомогательные навыки
+              </h6>
+
+              <div class="row align-items-center no-gutters">
+                <div class="col-auto">
+
+                  <!-- Heading -->
+                  <span class="h5 mr-2 mb-0">
+                    {{application.additional_skills_conformity}}%
+                  </span>
+
+                </div>
+                <div class="col">
+
+                  <!-- Progress -->
+                  <div class="progress progress-sm">
+                    <div class="progress-bar" role="progressbar" style="width: {{application.additional_skills_conformity}}%" aria-valuenow="{{application.additional_skills_conformity}}" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+
+                </div>
+              </div> <!-- / .row -->
+
+            </div>
+      </div>
+
+      </div>
+    </div> <!-- / .row -->
+  </div> <!-- / .card-body -->
+</div>
+      
+</a>

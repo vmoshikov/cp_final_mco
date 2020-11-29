@@ -51,6 +51,32 @@
 
                     <!-- List group -->
                     <div class="list-group list-group-flush list-group-activity my-n3">
+                                          <div class="list-group-item">
+                        <div class="row">
+                          <div class="col-auto">
+
+                            <!-- Avatar -->
+                            <div class="avatar avatar-sm">
+                              <div class="avatar-title font-size-lg bg-primary-soft rounded-circle text-primary">
+                                <i class="fe fe-star"></i>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="col ml-n2">
+                            <!-- Text -->
+                            <p class="small text-gray-700 mb-0">
+                              Вакансия сменила статус
+                            </p>
+
+                            <!-- Time -->
+                            <small class="text-muted">
+                            {{data.vacancy.created}}
+                            </small>
+
+                          </div>
+                        </div> <!-- / .row -->
+                      </div>
                       <div class="list-group-item">
                         <div class="row">
                           <div class="col-auto">
@@ -64,84 +90,14 @@
 
                           </div>
                           <div class="col ml-n2">
-
-                            <!-- Heading -->
-                            <h5 class="mb-1">
-                               1.4.0 update email sent
-                            </h5>
-
                             <!-- Text -->
                             <p class="small text-gray-700 mb-0">
-                              Sent to all 1,851 subscribers over a 24 hour period
+                              Вакансия создана
                             </p>
 
                             <!-- Time -->
                             <small class="text-muted">
-                              2m ago
-                            </small>
-
-                          </div>
-                        </div> <!-- / .row -->
-                      </div>
-                      <div class="list-group-item">
-                        <div class="row">
-                          <div class="col-auto">
-
-                            <!-- Avatar -->
-                            <div class="avatar avatar-sm">
-                              <div class="avatar-title font-size-lg bg-primary-soft rounded-circle text-primary">
-                                <i class="fe fe-archive"></i>
-                              </div>
-                            </div>
-
-                          </div>
-                          <div class="col ml-n2">
-
-                            <!-- Heading -->
-                            <h5 class="mb-1">
-                              New project "" created
-                            </h5>
-
-                            <!-- Text -->
-                            <p class="small text-gray-700 mb-0">
-                              Looks like there might be a new theme soon.
-                            </p>
-
-                            <!-- Time -->
-                            <small class="text-muted">
-                              2h ago
-                            </small>
-
-                          </div>
-                        </div> <!-- / .row -->
-                      </div>
-                      <div class="list-group-item">
-                        <div class="row">
-                          <div class="col-auto">
-
-                            <!-- Avatar -->
-                            <div class="avatar avatar-sm">
-                              <div class="avatar-title font-size-lg bg-primary-soft rounded-circle text-primary">
-                                <i class="fe fe-code"></i>
-                              </div>
-                            </div>
-
-                          </div>
-                          <div class="col ml-n2">
-
-                            <!-- Heading -->
-                            <h5 class="mb-1">
-                               1.5.0 was deployed.
-                            </h5>
-
-                            <!-- Text -->
-                            <p class="small text-gray-700 mb-0">
-                              A successful to deploy to production was executed.
-                            </p>
-
-                            <!-- Time -->
-                            <small class="text-muted">
-                              2m ago
+                            {{data.vacancy.created}}
                             </small>
 
                           </div>

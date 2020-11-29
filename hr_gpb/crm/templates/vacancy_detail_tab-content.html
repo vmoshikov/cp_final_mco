@@ -1,0 +1,193 @@
+      <div class="tab-pane fade h-100 py-4" id="candidate_application_{{application.id}}" role="tabpanel" aria-labelledby="candidate_application_{{application.core_condidate.id}}-tab">
+      
+      <div class="row mb-4">
+
+            <div class="col">
+
+
+
+            </div>
+                   
+            <div class="col-auto">
+            <a class="btn btn-outline-primary" href="{{application.cv_file.path}}"><span class="fe fe-file mr-1"></span>Резюме</a>
+
+            <div class="btn-group mb-2 show">
+                    <button type="button" name="" id="upgrade_stage_{{application.id}}" data-application="{{application.id}}" data-vacancy="{{application.core_vacancy.id}}" class="btn btn-success update_stage"><span class="fe fe-arrow-up-circle mr-1"></span>Сменить этап</button>
+                    <button type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="sr-only"></span>
+                    </button>
+
+                    <div class="dropdown-menu " style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(70px, 41px, 0px);" x-placement="bottom-start">
+                      <a class="dropdown-item trash_stage" id="trash_stage_{{application.id}}" data-application="{{application.id}}" data-vacancy="{{application.core_vacancy.id}}" href="#">Отказать</a>
+                    </div>
+                  </div>
+
+
+            
+            </div>
+
+      </div>
+
+<div class="row">
+          <div class="col-12 col-xl-8">
+
+
+                  {% if application.core_vacancy.testing %}
+
+                        {% if application.testing_solution.status == 0 %}
+
+                        <div class="alert alert-light" role="alert">
+
+                              {% include 'vacancy_detail_task_result.html' with testing=application.testing_solution %}
+
+                        </div>
+
+                        {% elif application.testing_solution.status == 1 %}
+
+                        <div class="alert alert-light border-primary" role="alert">
+
+                              {% include 'vacancy_detail_task_result.html' with testing=application.testing_solution %}
+
+                        </div>
+
+                        {% elif application.testing_solution.status == 2 %}
+
+                        <div class="alert alert-light border-success" role="alert">
+
+                              {% include 'vacancy_detail_task_result.html' with testing=application.testing_solution %}
+
+                        </div>
+                        
+                        {% endif %}
+
+                  {% endif %}
+
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body">
+
+                  <form method="POST" id="notice_form">
+                        <input type="text" class="form-control form-control-flush" placeholder="Комментарий">
+            
+
+
+                  <div class="card-footer d-flex align-items-center">
+                        <div class="col">
+
+                        <!-- Symbols -->
+                        <small class="text-muted" id="message_counter">
+                              0/250
+                        </small>
+
+                        </div>
+                        <div class="col-auto">
+
+                              <button type="submit" name="add_notice" class="btn btn-light">Добавить</button>
+
+                        </div>
+                  </div>
+
+                  </form>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-xl-4">
+            
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body">
+
+                <!-- List group -->
+                <div class="list-group list-group-flush my-n3">
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col">
+                        <h5 class="mb-0">
+                          Телефон
+                        </h5>
+                      </div>
+                      <div class="col-auto">
+                        <small class="text-muted">
+                          {{application.core_condidate.phone}}
+                        </small>
+                      </div>
+                    </div> <!-- / .row -->
+                  </div>
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col">
+                        <h5 class="mb-0">
+                          Email
+                        </h5>
+                      </div>
+                      <div class="col-auto">
+                        <small class="text-muted">
+                          {{application.core_condidate.email}}
+                        </small>
+                      </div>
+                    </div> <!-- / .row -->
+                  </div>
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col">
+                        <h5 class="mb-0">
+                          Город
+                        </h5>
+                      </div>
+                      <div class="col-auto">
+                        <small class="text-muted">
+                          Краснодар
+                        </small>
+                      </div>
+                    </div> <!-- / .row -->
+                  </div>
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col">
+                        <h5 class="mb-0">
+                          День рождения
+                        </h5>
+                      </div>
+                      <div class="col-auto">
+                        <small class="text-muted">
+                          09.05.1994
+                        </small>
+                      </div>
+                    </div> <!-- / .row -->
+                  </div>
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col">
+
+                        <!-- Title -->
+                        <h5 class="mb-0">
+                          Дата добавления
+                        </h5>
+
+                      </div>
+                      <div class="col-auto">
+
+                        <small class="text-muted">
+                          {{application.created}}
+                        </small>
+
+                      </div>
+                    </div> <!-- / .row -->
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            {% if application.core_vacancy.testing %}
+            <p class="text-center mb-0"><small><a href="http://71bc73326100.ngrok.io{% url 'tests:test_page' application.core_vacancy.id application.id %}" target="_blank">Ссылка на тестовое задание</a></small></p>
+            <p class="text-center mb-0"><small><a href="http://71bc73326100.ngrok.io{% url 'tests:review_page' application.core_vacancy.id application.id %}" target="_blank">Ссылка для ревьювера</a></small></p>
+            {% endif %}
+
+          </div>
+        </div>
+
+      </div>

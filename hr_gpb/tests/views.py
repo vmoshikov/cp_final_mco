@@ -51,7 +51,7 @@ def review_page(request, vacancy_id, ca_id):
       test_type = test.type
 
       if request.method == "POST":
-            review_form = TestingReviewForm(request.POST)
+            review_form = TestingReviewForm(request.POST, instance=ca.testing_solution)
             if review_form.is_valid():
                   print('Форма ВАЛИДНА')
                   review_form.save()

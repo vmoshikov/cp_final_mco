@@ -99,11 +99,11 @@ def vacancies_detail(request, vacancy_id):
     data = {
         "vacancy": vacancy,
         "vacancy_requests": {
-            "new": CandidateApplication.objects.filter(core_vacancy=vacancy, status=1),
-            "interview": CandidateApplication.objects.filter(core_vacancy=vacancy, status=2),
-            "secure": CandidateApplication.objects.filter(core_vacancy=vacancy, status=3),
-            "offer": CandidateApplication.objects.filter(core_vacancy=vacancy, status=4),
-            "decline": CandidateApplication.objects.filter(core_vacancy=vacancy, status=0)
+            "new": CandidateApplication.objects.filter(core_vacancy=vacancy, status=1).order_by('-key_skills_conformity'),
+            "interview": CandidateApplication.objects.filter(core_vacancy=vacancy, status=2).order_by('-key_skills_conformity'),
+            "secure": CandidateApplication.objects.filter(core_vacancy=vacancy, status=3).order_by('-key_skills_conformity'),
+            "offer": CandidateApplication.objects.filter(core_vacancy=vacancy, status=4).order_by('-key_skills_conformity'),
+            "decline": CandidateApplication.objects.filter(core_vacancy=vacancy, status=0).order_by('-key_skills_conformity')
         },
     }
     
