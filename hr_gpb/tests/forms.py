@@ -13,3 +13,14 @@ class TestingSolutionForm(forms.ModelForm):
                         'link': "Ссылка на решение",
                         'file': "Файл",
                   }
+
+class TestingReviewForm(forms.ModelForm):
+
+      class Meta:
+                  model = TestingSolution
+                  fields = ('reviewer_comment', 'status', )
+
+                  labels = {
+                        'reviewer_comment': "Комментарий ревьювера",
+                        'status': "Статутс",
+                  }

@@ -1,0 +1,77 @@
+{% extends "base.html" %} {% load static %} {% load crispy_forms_tags %}
+{% block main %}
+<div class="row justify-content-center">
+          <div class="col-12 ">
+
+            <!-- Header -->
+            <div class="header mt-md-5">
+              <div class="header-body">
+              
+                <!-- Title -->
+                <h1 class="header-title">
+                  Тестовое задание для вакансии: {{data.vacancy.title}}
+                </h1>
+
+              </div>
+            </div>
+
+            <div class="row">
+
+            <div class="col-xs-12 col-md-8">
+
+              <div class="card">
+                <div class="card-body">
+
+                  {{data.test.content|safe}}
+                    
+                </div>
+              </div>
+
+            </div>
+            
+            <div class="col-xs-12 col-md-4">
+              <h2>{{data.test.title}}</h2>
+              {{data.test.description|safe}}
+
+              {% comment %} для включения режима data.test.file {% endcomment %}
+            {% if data.test %}
+            <div class="alert alert-light" role="alert">
+            {% comment %} добавить .url для прикрепления ссылки {% endcomment %}
+            К заданию прилогается файл. <a href="{{data.test.file}}">Скачать</a>
+            </div>
+            {% endif %}
+            
+            <hr>
+            <h2>Решение кандидата</h2>
+            <h5>Описание</h5>
+              {{data.ca_testing_solution.description}}
+            <h5>Ссылка</h5>
+              {{data.ca_testing_solution.link}}
+
+            <hr>
+            <h2>Ревьювер</h2>
+            <form method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      {{ data.form|crispy }}
+                      <button type="submit" class="btn btn-primary">Отправить</button>
+                    </form>
+
+            </div>
+
+            </div>      
+
+            
+
+
+          </div>
+        </div>
+
+
+
+              </div>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+
+{% endblock main %}

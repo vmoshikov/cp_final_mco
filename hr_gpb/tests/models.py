@@ -30,9 +30,10 @@ class TestingSolution(models.Model):
         (1, "new", "Новое"),
         (2, "success", "Подтверждено"),
     )
-    description =  models.TextField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
     link = models.CharField(max_length=200, null=True, blank=True)
     file = models.FileField(null=True, blank=True)
+    reviewer_comment = models.TextField(null=True, blank=True)
     status = models.IntegerField(choices=STATUSES, default=STATUSES.new)
 
     def __str__(self):
