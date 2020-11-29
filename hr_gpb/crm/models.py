@@ -5,6 +5,7 @@ from model_utils import Choices
 
 from tests.models import Testing, TestingSolution 
 
+
 def default_time():
     return timezone.now()
 
@@ -31,7 +32,7 @@ class Skill(models.Model):
       created = models.DateTimeField(default=default_time)
 
       def __str__(self):
-        return f"{self.title} [{self.type}]"
+        return f"{self.title}"
 
 class Duty(models.Model):
     title = models.CharField(max_length=200, null=True,
@@ -69,6 +70,9 @@ class Vacancy(models.Model):
                             blank=True, default="Вакансия #")
     owner = models.ForeignKey(settings.AUTH_USER_MODEL,
                               on_delete=models.CASCADE)
+    
+    recruter = models.ForeignKey(settings.AUTH_USER_MODEL,
+                              on_delete=models.CASCADE, related_name="vacancy_recruter", null=True, blank=True)
     status = models.IntegerField(choices=STATUSES, default=STATUSES.new, null=True)
     description = models.TextField(null=True, blank=True)
     duties = models.ManyToManyField(
@@ -89,6 +93,9 @@ class Vacancy(models.Model):
 
     testing = models.ForeignKey(Testing, blank=True, null=True, default=None, related_name="vacancy_test", on_delete=models.CASCADE)
 
+    code_reviewer = models.ForeignKey(settings.AUTH_USER_MODEL,
+                              on_delete=models.CASCADE, related_name="vacancy_code_reviewer", null=True, blank=True)
+
     created = models.DateTimeField(default=default_time)
     updated = models.DateTimeField(auto_now=True)
     deadline = models.DateTimeField(null=True, blank=True)
@@ -106,10 +113,9 @@ class CandidateApplication(models.Model):
     STATUS = Choices(
         (0, "decline", "Отказ"),
         (1, "new", "Новая"),
-        (2, "testing", "Тестирование"),
-        (3, "interview", "Собеседование"),
-        (4, "secure", "Служба безопасности"),
-        (5, "offer", "Оффер"),
+        (2, "interview", "Собеседование"),
+        (3, "secure", "Служба безопасности"),
+        (4, "offer", "Оффер"),
     )
 
     core_condidate = models.ForeignKey(

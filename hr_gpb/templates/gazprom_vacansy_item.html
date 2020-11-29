@@ -681,7 +681,40 @@
 <div class="slider-news__content js-tab__content active" id="content_1_0" role="tabpanel" aria-labelledby="basic-5648537" style="outline: none;">
 <div class="slider-news__title focusable" tabindex="0" style="box-shadow: 0px 0px 0px; outline: none;">Вакансия - {{data.title}}</div>
 <div class="slider-news__text">
-<p>Описание вакансии (резюме)</p>
+            {{data.description}}
+            <h2><b>Предстоит заниматься:</b></h2>
+            <ul>
+            {% for duty in data.duties.all %}
+                  <li>{{duty}}</li>
+            {% endfor %}
+            </ul>
+
+            <h2><b>От вас ожидаем:</b></h2>
+            <ul>
+            <li>Опыт работы/разработки с 
+                  {% for key_skill in data.key_skills.all %}
+                        <span>{{key_skill.title}}, </span>
+                  {% endfor %}
+            </li>
+
+            <li>Стаж работы по требуемому направлению деятельности: от {{data.experience}} лет</li>
+
+            <li>Профессионально значимые качества: 
+                  {% for additional_skill in data.additional_skills.all %}
+                        <span>{{additional_skill.title}}, </span>
+                  {% endfor %}
+            
+            </li>
+            </ul>
+
+            <h2><b>Мы предлагаем:</b></h2>
+            <ul>
+            {% for condition in data.conditions.all %}
+                  <li>{{condition}}</li>
+            {% endfor %}
+            </ul>
+
+            <p>город {{data.get_city_display}}</p>
 
 {% load crispy_forms_tags %}
 

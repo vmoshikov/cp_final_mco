@@ -1,3 +1,6 @@
+
+{% comment %} Уважаемый ревьюер, если ты смотришь на этот ~файл~ глазами, а не через скрипт, то пропусти его. Он очень плохо написан. Мне стыдно, но нет времени все исправлять.... {% endcomment %}
+
 <div class="row">
 <div class="col-md-4 h-100 d-inline-block">
       
@@ -5,7 +8,7 @@
 
 {% for application in applications %}
 
-      <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#candidate_application_{{application.core_condidate.id}}" role="tab" aria-controls="candidate_application_{{application.core_condidate.id}}" aria-selected="true">
+      <a class="nav-link" id="candidate_application-tab_{{application.id}}" data-toggle="pill" href="#candidate_application_{{application.id}}" role="tab" aria-controls="candidate_application_{{application.core_condidate.id}}" aria-selected="true">
       
 <div class="card mb-0">
               <div class="card-body">
@@ -134,12 +137,12 @@
 
 <div class="tab-content" id="v-pills-tabContent">
       <div class="tab-pane fade show active h-100" id="candidate_application_{{application.core_condidate.id}}" role="tabpanel" aria-labelledby="candidate_application_{{application.core_condidate.id}}-tab">
-      <h5>Выберите кандидата</h5>
+      <h5 class="text-muted p-6"><span class="fe fe-arrow-left mr-4"></span>Выберите кандидата</h5>
       </div>
 
 {% for application in applications %}
 
-      <div class="tab-pane fade h-100 py-4" id="candidate_application_{{application.core_condidate.id}}" role="tabpanel" aria-labelledby="candidate_application_{{application.core_condidate.id}}-tab">
+      <div class="tab-pane fade h-100 py-4" id="candidate_application_{{application.id}}" role="tabpanel" aria-labelledby="candidate_application_{{application.core_condidate.id}}-tab">
       
       <div class="row mb-4">
 
@@ -150,8 +153,21 @@
             </div>
                    
             <div class="col-auto">
-            <a class="btn btn-sm btn-outline-primary" href="{{application.cv_file.path}}"><span class="fe fe-file mr-1"></span>Резюме</a>
-            <button type="button" name="" id="" class="btn btn-sm btn-outline-success"><span class="fe fe-arrow-up-circle mr-1"></span>Сменить этап</button>
+            <a class="btn btn-outline-primary" href="{{application.cv_file.path}}"><span class="fe fe-file mr-1"></span>Резюме</a>
+
+            <div class="btn-group mb-2 show">
+                    <button type="button" name="" id="upgrade_stage_{{application.id}}" data-application="{{application.id}}" data-vacancy="{{application.core_vacancy.id}}" class="btn btn-success update_stage"><span class="fe fe-arrow-up-circle mr-1"></span>Сменить этап</button>
+                    <button type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="sr-only"></span>
+                    </button>
+
+                    <div class="dropdown-menu " style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(70px, 41px, 0px);" x-placement="bottom-start">
+                      <a class="dropdown-item trash_stage" id="trash_stage_{{application.id}}" data-application="{{application.id}}" data-vacancy="{{application.core_vacancy.id}}" href="#">Отказать</a>
+                    </div>
+                  </div>
+
+
+            
             </div>
 
       </div>
@@ -310,25 +326,14 @@
 
               </div>
             </div>
-            <p class="text-center"><small><a href="http://71bc73326100.ngrok.io{% url 'tests:test_page' application.core_vacancy.id application.id %}" target="_blank">Ссылка на тестовое задание</a></small></p>
+            {% if application.core_vacancy.testing %}
+            <p class="text-center mb-0"><small><a href="http://71bc73326100.ngrok.io{% url 'tests:test_page' application.core_vacancy.id application.id %}" target="_blank">Ссылка на тестовое задание</a></small></p>
+            <p class="text-center mb-0"><small><a href="http://71bc73326100.ngrok.io{% url 'tests:test_page' application.core_vacancy.id application.id %}" target="_blank">Ссылка для ревьювера</a></small></p>
+            {% endif %}
 
           </div>
         </div>
-      {% comment %} {{application.core_vacancy.testing}}
 
-      {{application.testing_solution}}
-
-       {% endcomment %}
-
-
-      {% comment %} <br><br>
-
-      {{application.cv_file.url}}
-      
-      <br><br>
-      
-      {{ application.skills_assessment }}
-       {% endcomment %}
       </div>
 
 {% endfor %}

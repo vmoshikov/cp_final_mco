@@ -1,7 +1,11 @@
 from django.shortcuts import render, get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Count
 import sys, os, json
 
 from .models import Vacancy, Skill, Candidate, CandidateApplication
+from .forms import AddVacancyForm
+
 from api.views import send_notification
 
 # ДЕМО
@@ -25,11 +29,25 @@ from natasha import (
 
 
 def index(request):
-      return render(request, 'index.html', context={"data": 'data'})
+
+    data = {
+        "StagesApplications": [CandidateApplication.objects.filter(status=1).count(), CandidateApplication.objects.filter(status=2).count(), CandidateApplication.objects.filter(status=3).count(), CandidateApplication.objects.filter(status=4).count(),]
+    }
+    
+    return render(request, 'index.html', context={"data": data})
 
 def vacancies_list(request):
 
     all_vacancys = Vacancy.objects.all()
+
+    application_stat = []
+    print(all_vacancys)
+    for vacancy in all_vacancys:
+        ca = CandidateApplication.objects.filter(core_vacancy=vacancy).values('status').annotate(dcount=Count('status'))
+
+        application_stat.append(list(ca.values_list('dcount', flat=True)))
+
+    print(application_stat)
 
     # При отсутствующей авторизации
     # try:
@@ -37,30 +55,59 @@ def vacancies_list(request):
     # except:
     #     my_vacancys = Vacancy.objects.all()
 
+    vacancy_data = zip(all_vacancys, application_stat)
     data = {
-        'all_vacancys': all_vacancys,
+        "all_vacancys": all_vacancys,
+        "application_stat": application_stat,
+        "vacancy_data": vacancy_data
         # 'my_vacancys': my_vacancys
     }
 
     return render(request, 'vacancy.html', context={'data': data})
 
+def add_vacancy(request):
+
+    if request.method == "POST":
+
+            vacancy_form = AddVacancyForm(request.POST)
+
+            if vacancy_form.is_valid():
+                print('Форма ВАЛИДНА')
+                add_vacancy = vacancy_form.save(commit=False)
+
+                send_notification(f'{add_vacancy.owner}, вакансия по вашему запросу создана \nРекрутер вакансии: {add_vacancy.recruter}\nКод-ревью проводит {add_vacancy.code_reviewer}')
+                add_vacancy.save()
+
+    data = {
+        "form": AddVacancyForm()
+    }
+   
+    return render(request, 'add_vacancy.html', context={'data': data})
+
+@csrf_exempt
 def vacancies_detail(request, vacancy_id):
     vacancy = get_object_or_404(Vacancy, id=vacancy_id)
+    if request.method == "POST":
+        ca = CandidateApplication.objects.get(id=request.POST['application'])
+        if request.POST['status'] == 'trash':
+            ca.status = 0
+        else:
+            ca.status += 1
+        
+        ca.save()
 
     data = {
         "vacancy": vacancy,
         "vacancy_requests": {
             "new": CandidateApplication.objects.filter(core_vacancy=vacancy, status=1),
-            "tests": CandidateApplication.objects.filter(core_vacancy=vacancy, status=2),
-            "interview": CandidateApplication.objects.filter(core_vacancy=vacancy, status=3),
-            "secure": CandidateApplication.objects.filter(core_vacancy=vacancy, status=4),
-            "offer": CandidateApplication.objects.filter(core_vacancy=vacancy, status=5),
+            "interview": CandidateApplication.objects.filter(core_vacancy=vacancy, status=2),
+            "secure": CandidateApplication.objects.filter(core_vacancy=vacancy, status=3),
+            "offer": CandidateApplication.objects.filter(core_vacancy=vacancy, status=4),
             "decline": CandidateApplication.objects.filter(core_vacancy=vacancy, status=0)
         },
     }
     
     return render(request, 'vacancy_detail.html', context={'data': data})
-
 
 def candidates_list(request):
     all_candidates = Candidate.objects.all()

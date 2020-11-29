@@ -11,5 +11,6 @@ app_name = 'tests'
 urlpatterns = [
       path('',  views.tests, name='tests'),
       path(f'task/<int:vacancy_id>:<int:ca_id>',  views.test_page, name='test_page'),
+      path(f'review/<int:vacancy_id>:<int:ca_id>',  views.review_page, name='review_page'),
 
 ]

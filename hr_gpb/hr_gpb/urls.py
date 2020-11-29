@@ -20,7 +20,11 @@ from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
 
+from crm import views
+
 urlpatterns = [
+    path('',  views.index, name='crm_index'),
+
     path('admin/', admin.site.urls),
     path('crm/', include('crm.urls')),
     path('tests/', include('tests.urls')),

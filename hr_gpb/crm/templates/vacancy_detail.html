@@ -24,9 +24,9 @@
       <li class="nav-item">
             <a class="nav-link" id="new-tab" data-toggle="tab" href="#new" role="tab" aria-controls="new" aria-selected="false">Новые <span class="badge badge-soft-dark">{{data.vacancy_requests.new.count }}</span></a>
       </li>
-      <li class="nav-item">
+      {% comment %} <li class="nav-item">
             <a class="nav-link" id="tests-tab" data-toggle="tab" href="#tests" role="tab" aria-controls="tests" aria-selected="false">Тестирование <span class="badge badge-soft-dark">{{data.vacancy_requests.tests.count }}</span></a>
-      </li>
+      </li> {% endcomment %}
       <li class="nav-item">
             <a class="nav-link" id="interview-tab" data-toggle="tab" href="#interview" role="tab" aria-controls="interview" aria-selected="false">Собеседование <span class="badge badge-soft-dark">{{data.vacancy_requests.interview.count }}</span></a>
       </li>
@@ -52,11 +52,11 @@
             {% include 'vacancy_detail_tabgroups.html' with applications=data.vacancy_requests.new %}
 
       </div>
-      <div class="tab-pane fade" id="tests" role="tabpanel" aria-labelledby="tests-tab">
+      {% comment %} <div class="tab-pane fade" id="tests" role="tabpanel" aria-labelledby="tests-tab">
       
             {% include 'vacancy_detail_tabgroups.html' with applications=data.vacancy_requests.tests %}
       
-      </div>
+      </div> {% endcomment %}
       <div class="tab-pane fade" id="interview" role="tabpanel" aria-labelledby="interview-tab">
       
             {% include 'vacancy_detail_tabgroups.html' with applications=data.vacancy_requests.interview %}

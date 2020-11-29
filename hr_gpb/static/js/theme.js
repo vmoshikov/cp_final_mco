@@ -27,6 +27,44 @@ $(document).ready(function() {
       $(this).submit();
     });
 
+    $(".update_stage").click(function (event) {
+      vacancy = $(this).data('vacancy')
+      application = $(this).data('application')
+      $.ajax({
+        type: "POST",
+        url: "/crm/vacancies/detail/"+vacancy,
+        data: {
+          'application':application // from form
+        },
+        success: function () {
+          console.log('asfsdf')
+          $('#candidate_application_'+application).remove()
+          $('#candidate_application-tab_'+application).remove()
+          $
+        }
+      });
+      return false; //<---- move it here
+    });
+
+    $(".trash_stage").click(function (event) {
+      vacancy = $(this).data('vacancy')
+      application = $(this).data('application')
+      $.ajax({
+        type: "POST",
+        url: "/crm/vacancies/detail/"+vacancy,
+        data: {
+          'status': 'trash',
+          'application': application
+        },
+        success: function () {
+          $('#candidate_application_'+application).remove()
+          $('#candidate_application-tab_'+application).remove()
+          $
+        }
+      });
+      return false; //<---- move it here
+    });
+
 });
 
 function completeTask(id) {

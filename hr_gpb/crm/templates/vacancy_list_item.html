@@ -1,70 +1,68 @@
-                  <li class="list-group-item">
-                    <div class="row align-items-center">
-                      <div class="col-auto">
+<tr>
+  <td>
+    <h4 class="mb-1 name">
+      <a href="{% url 'crm:vacancy_details' vacancy.id %}">{{ vacancy.title }}</a>
+      {% if vacancy.testing %}
+      <span class="badge badge-soft-info"><span class="fe fe-zap mr-1"></span> Тестовое задание</span>
+      {% endif %}
+    </h4>
 
-                        <!-- Avatar -->
-                        <a href="#!" class="avatar avatar-lg">
-                          <span class="avatar-title rounded bg-white text-secondary">
-                            <span class="fe fe-folder"></span>
-                          </span>
-                        </a>
+    <p class="card-text small text-muted">
+      Заказчик: {{ vacancy.owner.first_name }} {{ vacancy.owner.last_name }} | Рекрутер: {{ vacancy.recruter.first_name }} {{ vacancy.recruter.last_name }} | {% if vacancy.code_reviewer.first_name %} КодРевью: {{ vacancy.code_reviewer.last_name }} |{% endif %} {{ vacancy.created }}
+    </p>
 
-                      </div>
-                      <div class="col ml-n2">
+  </td>
 
-                        <!-- Title -->
-                        <h4 class="mb-1 name">
-                          <a href="{% url 'crm:vacancy_details' vacancy.id %}">{{ vacancy.title }}</a>
-                          {% if vacancy.testing %}
-                            <span class="badge badge-soft-info"><span class="fe fe-zap mr-1"></span> Тестовое задание</span>
-                          {% endif %}
-                        </h4>
+  <td>{{vacancy.get_status_display}}</td>
 
-                        <!-- Text -->
-                        <p class="card-text small text-muted mb-1">
-                          CTO отдела разработки внутренней HR-системы
-                        </p>
+  <td>
+    
+    <canvas class="chart-canvas" id="minichart{{vacancy.id}}" width="75" height="35" style="display: block; max-width: 75px; max-height: 35px;"></canvas>
 
+    <script>
+      $(document).ready(function () {
+            new Chart('minichart{{vacancy.id}}', {
+                  type: 'bar',
+                  options: {
+                        tooltips: {
+                              enabled: false,
+                              custom: function() {}
+                        },
+                        scales: {
+                              xAxes: [{
+                                    stacked: false,
+                                    display: false
+                                    
+                              }],
+                              yAxes: [{
+                                    stacked: false,
+                                    display: false
+                              }]
+                        },
+                        legend: {
+                              display: false
+                        },
+                        layout: {
+                              padding: {
+                                    left: 0,
+                                    right: 0,
+                                    top: 0,
+                                    bottom: 5
+                              }
+                        }
+                  },
+                  
+                  data: {
+                        labels: ['Новая', 'Собеседование', 'СБ', 'Оффер'],
+                        datasets: [
+                              {
+                                    data: {{dataset}}
+                              }
+                        ]
+                  }
+            });
+      })
+</script>
 
-                        <!-- Time -->
-                        <p class="card-text small text-muted">
-                          {{ vacancy.owner }} | {{ vacancy.created }}
-                        </p>
-
-                      </div>
-                      <div class="col-auto">
-                        <div class="dropdown">
-                          <button class="btn btn-sm btn-success dropdown-toggle active " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            В работе
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Новая</a>
-                            <a class="dropdown-item" href="#">В работе</a>
-                            <a class="dropdown-item" href="#">Закрыта</a>
-                          </div>
-                        </div>
-                        <!-- Button -->
-                      </div>
-                      <div class="col-auto">
-
-                        <!-- Dropdown -->
-                        <div class="dropdown">
-                          <a href="#" class="dropdown-ellipses dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fe fe-more-vertical"></i>
-                          </a>
-                          <div class="dropdown-menu dropdown-menu-right">
-                            <a href="#!" class="dropdown-item">
-                              Подробнее
-                            </a>
-                            <a href="#!" class="dropdown-item">
-                              Редактировать
-                            </a>
-                            <a href="#!" class="dropdown-item">
-                              Удалить
-                            </a>
-                          </div>
-                        </div>
-
-                      </div>
-                    </div> <!-- / .row -->
-                  </li>
+  </td>
+</tr>
